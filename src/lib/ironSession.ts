@@ -1,3 +1,4 @@
+import { SessionData } from "@/customTypes";
 import { SessionOptions, getIronSession } from "iron-session";
 
 export const sessionOptions: SessionOptions = {
@@ -8,9 +9,5 @@ export const sessionOptions: SessionOptions = {
     },
 };
 
-export interface SessionData {
-    username: string,
-    isLoggedIn: boolean,
-}
 
 export const getSession = (cookies: any) => getIronSession<SessionData>(cookies, sessionOptions);

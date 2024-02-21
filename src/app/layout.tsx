@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { AppRouterCacheProvider  } from '@mui/material-nextjs/v14-appRouter';
 import { ThemeProvider } from "@mui/material/styles";
 import Theme from "../Theme";
-import { CssBaseline } from "@mui/material";
+import { Container, CssBaseline } from "@mui/material";
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -32,7 +32,9 @@ export default function RootLayout({
                     <body>
                         <TopAppBar />
                         <main>
-                            {children}
+                            <Container sx={{ my: 2 }}>
+                                {children}
+                            </Container>
                         </main>
                     </body>
                 </ThemeProvider>
