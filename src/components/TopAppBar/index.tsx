@@ -16,6 +16,7 @@ const navigationPaths = [
     { path: '/', label: 'Home' },
     { path: '/create-poll', label: 'Create Poll' },
     { path: '/list', label: 'List' },
+    { path: '/login', label: 'Login' },
 ];
 
 export default function TopAppBar({ color, elevation }: TopAppBarProps) {

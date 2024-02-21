@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prisma-generate": "prisma generate",
+    "prisma-push": "prisma db push",
+    "buildprod": "npm run prisma-push && npm run build"
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
