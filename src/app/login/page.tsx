@@ -31,10 +31,14 @@ export default function LoginPage() {
         >
             {formik => (
                 <form onSubmit={formik.handleSubmit}>
-                    <Stack direction='column' alignItems='center' gap={2}>
-                        <TextField id='username' placeholder="Username" {...formik.getFieldProps('username')} />
-                        <TextField id='password' placeholder="Password" type="password" {...formik.getFieldProps('password')} />
-                        <Button type="submit" variant="contained">Login</Button>
+                    <Stack direction='row' justifyContent='center'>
+                        <Paper>
+                            <Stack direction='column' gap={2} padding={4}>
+                                <TextField id='username' label='Username' {...formik.getFieldProps('username')} />
+                                <TextField id='password' label='Password' type="password" {...formik.getFieldProps('password')} />
+                                <Button type="submit" variant="contained">Login</Button>
+                            </Stack>
+                        </Paper>
                     </Stack>
                 </form>
             )}
