@@ -1,7 +1,10 @@
+import PageContent from "@/components/PageContent";
+import PollList from "./PollList";
+
 export default function ListPage() {
     return (
-        <div>
-            <h1>List Page</h1>
-        </div>
+        <PageContent my={4}>
+            <PollList />
+        </PageContent>
     );
 }

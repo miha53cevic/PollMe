@@ -6,7 +6,9 @@ export default function HomePage() {
         <PageContent centerY>
             <Grid container>
                 <Grid item xs={12} md={6}>
-                    <Typography variant='h2'>A simple poll creator for anyones needs</Typography>
+                    <Typography variant='h2'>
+                        A <u>simple</u> poll creator for anyones needs
+                    </Typography>
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <Stack direction='row' alignItems='center' height='100%'>

@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
 import argon2 from "argon2";
 
+// Get session data
 export async function GET(req: NextRequest) {
     const session = await getSession(cookies());
     
@@ -17,6 +18,7 @@ export async function GET(req: NextRequest) {
     return Response.json(session);
 }
 
+// Log in
 export async function POST(req: NextRequest) {
     const session = await getSession(cookies());
     
@@ -43,6 +45,7 @@ export async function POST(req: NextRequest) {
     return Response.json(session);
 }
 
+// Log out
 export async function DELETE(req: NextRequest) {
     const session = await getSession(cookies());
     
