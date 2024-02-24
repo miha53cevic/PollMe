@@ -16,4 +16,30 @@ datasource db {
 model User {
     username String @id
     password String 
+    polls Poll[]
+    votes PollVote[]
+}
+
+model Poll {
+    id Int @id @default(autoincrement())
+    question String
+    options PollOption[]
+    author String
+    authorUser User @relation(fields: [author], references: [username])
+}
+
+model PollOption {
+    id Int @id @default(autoincrement())
+    option String
+    pollId Int
+    poll Poll @relation(fields: [pollId], references: [id])
+    votes PollVote[]
+}
+
+model PollVote {
+    id Int @id @default(autoincrement())
+    optionId Int
+    voter String
+    option PollOption @relation(fields: [optionId], references: [id])
+    voterUser User @relation(fields: [voter], references: [username])
 }
