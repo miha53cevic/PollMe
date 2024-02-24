@@ -32,9 +32,7 @@ export default function RootLayout({
                     <body>
                         <TopAppBar />
                         <main>
-                            <Container sx={{ my: 2 }}>
-                                {children}
-                            </Container>
+                            {children}
                         </main>
                     </body>
                 </ThemeProvider>
