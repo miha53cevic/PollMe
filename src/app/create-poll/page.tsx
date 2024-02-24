@@ -1,6 +1,6 @@
 'use client'
 import PageContent from "@/components/PageContent";
-import { Box, Button, IconButton, Paper, Stack, TextField } from "@mui/material";
+import { Box, Button, IconButton, Paper, Stack, TextField, Typography } from "@mui/material";
 import { FieldArray, Formik } from "formik";
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -46,7 +46,8 @@ export default function CreatePollPage() {
                                                     </Box>
                                                 </Stack>
                                             ))}
-                                            <Stack direction='row' justifyContent='end'>
+                                            <Stack direction='row' gap={1} justifyContent='end' alignItems='center'>
+                                                <Typography variant='caption'>Add Option</Typography>
                                                 <IconButton onClick={() => arrayHelpers.push('')}>
                                                     <AddIcon color="action" />
                                                 </IconButton>
