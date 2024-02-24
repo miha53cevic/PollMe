@@ -1,7 +1,8 @@
 'use client'
 import useAuth from "@/hooks/useAuth";
-import { Button, Paper, Stack, TextField } from "@mui/material";
+import { Box, Button, Paper, Stack, TextField, Typography } from "@mui/material";
 import { Formik } from "formik";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -24,9 +25,13 @@ export default function LoginPage() {
         <Formik
             initialValues={defaultValues}
             onSubmit={async (values, actions) => {
-                await login({ username: values.username, password: values.password });
-                actions.setSubmitting(false);  
-                router.push('/');
+                try {
+                    await login({ username: values.username, password: values.password });
+                    router.push('/');
+                } catch(err) {
+                    actions.resetForm({ values: { ...values, password: '' } });
+                    actions.setFieldError('username', 'Username or password do not match');
+                }
             }}
         >
             {formik => (
@@ -34,9 +39,18 @@ export default function LoginPage() {
                     <Stack direction='row' justifyContent='center'>
                         <Paper>
                             <Stack direction='column' gap={2} padding={4}>
-                                <TextField id='username' label='Username' {...formik.getFieldProps('username')} />
-                                <TextField id='password' label='Password' type="password" {...formik.getFieldProps('password')} />
+                                <Box textAlign='center'>
+                                    <Typography variant="h2">Login</Typography>
+                                </Box>
+                                <TextField id='username' label='Username' {...formik.getFieldProps('username')} required />
+                                <TextField id='password' label='Password' type="password" {...formik.getFieldProps('password')} required />
                                 <Button type="submit" variant="contained">Login</Button>
+                                {formik.errors.username && 
+                                    <Typography textAlign='center' color='error'>{formik.errors.username}</Typography>
+                                }
+                                <Box textAlign='center'>
+                                    <Link href="/register">{"Don't have an account?"}</Link>
+                                </Box>
                             </Stack>
                         </Paper>
                     </Stack>

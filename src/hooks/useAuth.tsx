@@ -26,13 +26,15 @@ async function loginFetcher(url: string, { arg }: { arg: { username: string, pas
         method: 'POST',
         body: formData,
     });
-    return await response.json();
+    if (response.ok) return await response.json();
+    throw new Error(await response.text());
 }
 
 async function logoutFetcher(url: string) {
     const response = await fetch(url, {
         method: 'DELETE',
     });
+    if (!response.ok) throw new Error(await response.text());
 }
 
 export default function useAuth() {
@@ -40,6 +42,7 @@ export default function useAuth() {
         fallbackData: defaultSession,
     });
 
+    // triggering a mutation also revalidates the useSWR hook with the same key
     const { trigger: login } = useSWRMutation('/api/auth', loginFetcher);
     const { trigger: logout } = useSWRMutation('/api/auth', logoutFetcher);
 

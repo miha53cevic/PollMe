@@ -1,4 +1,4 @@
-import { SessionData } from "@/customTypes";
+import { SessionData } from "@/CustomTypes";
 import { SessionOptions, getIronSession } from "iron-session";
 
 export const sessionOptions: SessionOptions = {
