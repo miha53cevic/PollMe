@@ -1,8 +1,9 @@
 import { PreviewPoll } from "@/CustomTypes";
 import { prisma } from "@/lib/db";
+import { NextRequest } from "next/server";
 
 // fetch all polls
-export async function GET() {
+export async function GET(req: NextRequest) {
     const polls = await prisma.poll.findMany({
         select: {
             id: true,
