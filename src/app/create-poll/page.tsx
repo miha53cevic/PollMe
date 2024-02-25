@@ -5,6 +5,8 @@ import { FieldArray, Formik, FormikErrors } from "formik";
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useRouter } from "next/navigation";
+import useAuth from "@/hooks/useAuth";
+import { useEffect } from "react";
 
 const defualtValues = {
     question: "",
@@ -15,7 +17,15 @@ const defualtValues = {
 };
 
 export default function CreatePollPage() {
+    const { session, isLoading } = useAuth();
     const router = useRouter();
+
+    useEffect(() => {
+        if (!session?.isLoggedIn && isLoading === false) {
+            router.replace('/login?returnUrl=/create-poll');
+        }
+    }, [isLoading, session, router]);
+    
     return (
         <PageContent my={4}>
             <Paper>

@@ -22,7 +22,7 @@ export default function RegisterPage() {
         if (session?.isLoggedIn && isLoading === false) {
             router.replace('/');
         }
-    });
+    }, [isLoading, session, router]);
 
     return (
         <PageContent centerY>

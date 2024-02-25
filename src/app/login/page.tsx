@@ -4,7 +4,7 @@ import useAuth from "@/hooks/useAuth";
 import { Box, Button, Paper, Stack, TextField, Typography } from "@mui/material";
 import { Formik } from "formik";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
 const defaultValues = {
@@ -15,12 +15,16 @@ const defaultValues = {
 export default function LoginPage() {
     const { session, isLoading, login } = useAuth();
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const returnUrl = searchParams.get('returnUrl'); // get the returnUrl from the query string, /login?returnUrl=/some/path
 
+    // Redirect to returnUrl if the user is already logged in
     useEffect(() => {
         if (session?.isLoggedIn && isLoading === false) {
-            router.replace('/');
+            if (returnUrl) router.push(returnUrl ? returnUrl : '/'); // send back to returnUrl if it exists
+            else router.replace('/');
         }
-    });
+    }, [isLoading, session, router, returnUrl]);
 
     return (
         <PageContent centerY>
@@ -29,7 +33,7 @@ export default function LoginPage() {
                 onSubmit={async (values, actions) => {
                     try {
                         await login({ username: values.username, password: values.password });
-                        router.push('/');
+                        router.push(returnUrl ? returnUrl : '/'); // send back to returnUrl if it exists
                     } catch (err) {
                         actions.resetForm({ values: { ...values, password: '' } });
                         actions.setFieldError('username', 'Username or password do not match');

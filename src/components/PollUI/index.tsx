@@ -4,6 +4,8 @@ import ProgressBar from "./ProgressBar";
 import { PollData } from "@/CustomTypes";
 import { mutate } from "swr";
 import useAuth from "@/hooks/useAuth";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export interface PollUIProps {
     data: PollData,
@@ -11,6 +13,7 @@ export interface PollUIProps {
 }
 
 export default function PollUI({ data, disableVoting }: PollUIProps) {
+    const pathname = usePathname();
     const { session, isLoading } = useAuth();
 
     const totalVotes = data.options.reduce((acc, option) => acc + option.votes.length, 0);
@@ -57,6 +60,7 @@ export default function PollUI({ data, disableVoting }: PollUIProps) {
                     {isLoading ?
                         <CircularProgress />
                         :
+                        session?.isLoggedIn ?
                         <Stack direction='row' gap={2} justifyContent='center'>
                             {data.options.map((option) => (
                                 <Button
@@ -69,6 +73,10 @@ export default function PollUI({ data, disableVoting }: PollUIProps) {
                                 </Button>
                             ))}
                         </Stack>
+                        :
+                        <Link href={`/login?returnUrl=${pathname}`}>
+                            <Button variant="contained">Login to vote</Button>
+                        </Link>
                     }
                     {hasVoted() &&
                         <Typography variant="body1">You voted for: <b>{getVotedOption()?.text}</b></Typography>
