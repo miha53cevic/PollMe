@@ -2,6 +2,8 @@ import { PreviewPoll } from "@/CustomTypes";
 import { prisma } from "@/lib/db";
 import { NextRequest } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 // fetch all polls
 export async function GET(req: NextRequest) {
     const polls = await prisma.poll.findMany({
