@@ -12,7 +12,7 @@ export interface PollPageProps {
 export default function PollPage({ params }: PollPageProps) {
     const pollId = params.id;
     return (
-        <PageContent>
+        <PageContent my={4}>
             <PollModel pollId={pollId}>
                 {(data) => (
                     <PollUI data={data} />
