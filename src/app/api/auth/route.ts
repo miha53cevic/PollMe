@@ -5,6 +5,8 @@ import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
 import argon2 from "argon2";
 
+export const dynamic = 'force-dynamic';
+
 // Get session data
 export async function GET(req: NextRequest) {
     const session = await getSession(cookies());

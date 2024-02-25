@@ -3,6 +3,8 @@ import { getSession } from "@/lib/ironSession";
 import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 // create poll
 export async function POST(req: NextRequest) {
     const session = await getSession(cookies());

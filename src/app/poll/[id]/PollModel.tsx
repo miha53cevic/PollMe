@@ -9,8 +9,9 @@ export interface PollModelProps {
 }
 
 async function fetcher(url: string): Promise<PollData> {
-    const res = await fetch(url);
-    return res.json();
+    const response = await fetch(url);
+    if (response.ok) return await response.json();
+    throw new Error(await response.text());
 }
 
 export default function PollModel(props: PollModelProps) {

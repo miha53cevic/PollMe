@@ -2,6 +2,8 @@ import { PollData } from "@/CustomTypes";
 import { prisma } from "@/lib/db";
 import { NextRequest } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 // get specific poll by id
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
     const id = params.id;
