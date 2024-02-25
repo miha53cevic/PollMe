@@ -46,7 +46,7 @@ export default function LoginPage() {
                                     </Box>
                                     <TextField id='username' label='Username' {...formik.getFieldProps('username')} required />
                                     <TextField id='password' label='Password' type="password" {...formik.getFieldProps('password')} required />
-                                    <Button type="submit" variant="contained">Login</Button>
+                                    <Button type="submit" variant="contained" disabled={formik.isSubmitting}>Login</Button>
                                     {formik.errors.username &&
                                         <Typography textAlign='center' color='error'>{formik.errors.username}</Typography>
                                     }

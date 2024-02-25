@@ -63,7 +63,7 @@ export default function RegisterPage() {
                                     <TextField id='username' label='Username' {...formik.getFieldProps('username')} required />
                                     <TextField id='password' label='Password' type="password" {...formik.getFieldProps('password')} required />
                                     <TextField id='password' label='Password' type="password" {...formik.getFieldProps('repeatPassword')} required />
-                                    <Button type="submit" variant="contained">Register</Button>
+                                    <Button type="submit" variant="contained" disabled={formik.isSubmitting}>Register</Button>
                                     {formik.errors.repeatPassword && formik.touched.repeatPassword &&
                                         <Typography textAlign='center' color='error'>{formik.errors.repeatPassword}</Typography>
                                     }
