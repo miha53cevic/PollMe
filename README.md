@@ -1,5 +1,5 @@
 # PollMe
-Using NextJS 13 with AppRouting
+Using NextJS 14 with AppRouting
 
 ## References
 - [SWR revalidation interval](https://swr.vercel.app/docs/revalidation)
